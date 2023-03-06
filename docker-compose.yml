@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: maxence
+      MYSQL_DATABASE: maxence
+    networks:
+      - maxence_network
+    volumes:
+      - maxence-db-2:/var/lib/mysql
+
+  apache:
+    image: httpd:latest
+    ports:
+      - "8080:80"
+    networks:
+      - maxence_network
+    volumes:
+      - "/mnt/c/Users/maxen/Desktop/GIT/ESILV/TD7A4/php:/usr/local/apache2/htdocs"
+
+volumes:
+  maxence-db-2:
+
+networks:
+  maxence_network:
+    driver: bridge
